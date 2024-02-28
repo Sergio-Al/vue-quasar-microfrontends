@@ -34,7 +34,7 @@ module.exports = configure(function (ctx) {
     // app boot file (/src/boot)
     // --> boot files are part of "main.js"
     // https://v2.quasar.dev/quasar-cli-webpack/boot-files
-    boot: ['i18n', 'axios', 'globalComponents'],
+    boot: ['i18n', 'axios'],
 
     // https://v2.quasar.dev/quasar-cli-webpack/quasar-config-js#Property%3A-css
     css: ['app.scss'],
@@ -62,17 +62,13 @@ module.exports = configure(function (ctx) {
 
         cfg.plugins.push(
           new ModuleFederationPlugin({
-            name: 'quasar_host',
+            name: 'quasar_accounts',
             filename: 'remoteEntry.js',
             exposes: {
-              './i18nInstance': './src/i18n/index.ts',
-              './userStore': './src/stores/userStore.ts',
+              './GeneralComponent.vue': './src/components/GeneralComponent.vue',
             },
             remotes: {
-              quasar_remote:
-                'quasar_remote@http://localhost:8081/remoteEntry.js',
-              quasar_accounts:
-                'quasar_accounts@http://localhost:8082/remoteEntry.js',
+              quasar_host: 'quasar_host@http://localhost:8080/remoteEntry.js',
             },
             shared: {
               ...dependencies,
@@ -124,24 +120,13 @@ module.exports = configure(function (ctx) {
       server: {
         type: 'http',
       },
-      port: 8080,
+      port: 8082,
       open: false, // opens browser window automatically
-      // proxy: {
-      //   '/quasar_remote': {
-      //     target: 'http://localhost:8081',
-      //     changeOrigin: true,
-      //     pathRewrite: {
-      //       '^/quasar_remote': '',
-      //     },
-      //   },
-      // },
     },
 
     // https://v2.quasar.dev/quasar-cli-webpack/quasar-config-js#Property%3A-framework
     framework: {
-      config: {
-        dark: 'auto', // or Boolean true/false
-      },
+      config: {},
 
       // iconSet: 'material-icons', // Quasar icon set
       // lang: 'en-US', // Quasar language pack
@@ -154,14 +139,7 @@ module.exports = configure(function (ctx) {
       // directives: [],
 
       // Quasar plugins
-      plugins: [
-        'Dialog',
-        'Loading',
-        'Notify',
-        'LocalStorage',
-        'SessionStorage',
-        'Meta',
-      ],
+      plugins: ['Notify'],
     },
 
     // animations: 'all', // --- includes all animations
@@ -199,8 +177,8 @@ module.exports = configure(function (ctx) {
       // chainWebpackCustomSW (/* chain */) {},
 
       manifest: {
-        name: 'Quasar App',
-        short_name: 'Quasar App',
+        name: 'Quasar Accounts',
+        short_name: 'Quasar Accounts',
         description: '',
         display: 'standalone',
         orientation: 'portrait',
@@ -264,7 +242,7 @@ module.exports = configure(function (ctx) {
       builder: {
         // https://www.electron.build/configuration/configuration
 
-        appId: 'quasar-host',
+        appId: 'quasar-accounts',
       },
 
       // "chain" is a webpack-chain object https://github.com/neutrinojs/webpack-chain

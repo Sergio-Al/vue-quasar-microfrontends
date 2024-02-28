@@ -8,6 +8,9 @@ import { ref, defineAsyncComponent, watch } from 'vue';
 const MyCounter = defineAsyncComponent(
   () => import('quasar_remote/MyCounter.vue')
 );
+const GeneralComponent = defineAsyncComponent(
+  () => import('quasar_accounts/GeneralComponent.vue')
+);
 
 
 const { t } = useI18n();
@@ -78,6 +81,7 @@ watch(counter, (newVal) => {
     </template>
     <template #body>
       <MyCounter :counter="counter" @increment="incrementCounter" />
+      <GeneralComponent />
     </template>
   </main-dialog>
 </template>
