@@ -5,7 +5,10 @@ import { Todo, Meta } from 'components/models';
 import ExampleComponent from 'components/ExampleComponent.vue';
 import { ref, defineAsyncComponent, watch } from 'vue';
 
-const MyCounter = defineAsyncComponent(() => import('quasar_remote/MyCounter.vue'));
+const MyCounter = defineAsyncComponent(
+  () => import('quasar_remote/MyCounter.vue')
+);
+
 
 const { t } = useI18n();
 
@@ -15,27 +18,27 @@ const counterModal = ref(false);
 const todos = ref<Todo[]>([
   {
     id: 1,
-    content: 'ct1'
+    content: 'ct1',
   },
   {
     id: 2,
-    content: 'ct2'
+    content: 'ct2',
   },
   {
     id: 3,
-    content: 'ct3'
+    content: 'ct3',
   },
   {
     id: 4,
-    content: 'ct4'
+    content: 'ct4',
   },
   {
     id: 5,
-    content: 'ct5'
-  }
+    content: 'ct5',
+  },
 ]);
 const meta = ref<Meta>({
-  totalCount: 1200
+  totalCount: 1200,
 });
 
 const incrementCounter = () => {
@@ -51,7 +54,6 @@ watch(counter, (newVal) => {
     counterModal.value = false;
   }
 });
-
 </script>
 
 <template>
@@ -62,15 +64,20 @@ watch(counter, (newVal) => {
         <div class="text-h6">{{ $t('card_counter_title') }}</div>
         <div class="text-subtitle2">{{ $t('card_counter_description') }}</div>
       </q-card-section>
-      <q-card-section :class="[counter < 10 ? 'text-primary' : 'text-bold text-negative']">{{
-        counterMessage
-      }}
+      <q-card-section :class="[counter < 10 ? 'text-primary' : 'text-bold text-negative']">{{ counterMessage }}
       </q-card-section>
     </q-card>
     <q-btn @click="counterModal = true" :label="$t('card_counter_dialog_button')" />
   </q-page>
-  <q-dialog v-model="counterModal">
-    <MyCounter :title="$t('card_counter_dialog_title')" :counter="counter" @increment="incrementCounter" />
-  </q-dialog>
+  <main-dialog size-dialog="dialog-lg" v-model="counterModal" header :iconDialog="''" :persistent="false">
+    <template #header>
+      <q-toolbar>
+        <q-btn flat round dense icon="close" @click="counterModal = false" />
+        <q-toolbar-title>{{ $t('card_counter_dialog_title') }}</q-toolbar-title>
+      </q-toolbar>
+    </template>
+    <template #body>
+      <MyCounter :counter="counter" @increment="incrementCounter" />
+    </template>
+  </main-dialog>
 </template>
-

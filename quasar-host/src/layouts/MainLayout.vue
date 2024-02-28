@@ -8,46 +8,56 @@ import SettingsCardComponent from 'src/components/SettingsCardComponent.vue';
 const user = useUserStore();
 const essentialLinks = [
   {
-    title: 'Docs',
-    caption: 'quasar.dev',
-    icon: 'school',
+    title: 'Accounts',
+    caption: 'Manage your accounts',
+    icon: 'account_circle',
   },
   {
-    title: 'Github',
-    caption: 'github.com/quasarframework',
-    icon: 'code',
+    title: 'Contacts',
+    caption: 'Manage your contacts',
+    icon: 'contacts',
   },
   {
-    title: 'Discord Chat Channel',
-    caption: 'chat.quasar.dev',
-    icon: 'chat',
+    title: 'Prospects',
+    caption: 'Manage your prospects',
+    icon: 'group',
   },
   {
-    title: 'Forum',
-    caption: 'forum.quasar.dev',
-    icon: 'record_voice_over',
+    title: 'Leads',
+    caption: 'Manage your leads',
+    icon: 'assignment_ind',
   },
   {
-    title: 'Twitter',
-    caption: '@quasarframework',
-    icon: 'rss_feed',
+    title: 'Reservation',
+    caption: 'Manage your reservations',
+    icon: 'event_note',
   },
   {
-    title: 'Facebook',
-    caption: '@QuasarFramework',
-    icon: 'public',
+    title: 'Deliviery',
+    caption: 'Manage your deliveries',
+    icon: 'local_shipping',
   },
   {
-    title: 'Quasar Awesome',
-    caption: 'Community Quasar projects',
-    icon: 'favorite',
-  }
+    title: 'Opportunities',
+    caption: 'Manage your opportunities',
+    icon: 'monetization_on',
+  },
+  {
+    title: 'Quotes',
+    caption: 'Manage your quotes',
+    icon: 'description',
+  },
+  {
+    title: 'Quotes Models',
+    caption: 'Manage your quotes models',
+    icon: 'description',
+  },
 ];
 
-const leftDrawerOpen = ref(false)
+const leftDrawerOpen = ref(false);
 
 function toggleLeftDrawer() {
-  leftDrawerOpen.value = !leftDrawerOpen.value
+  leftDrawerOpen.value = !leftDrawerOpen.value;
 }
 </script>
 
@@ -55,7 +65,14 @@ function toggleLeftDrawer() {
   <q-layout view="lHh Lpr lFf">
     <q-header elevated>
       <q-toolbar>
-        <q-btn flat dense round icon="menu" aria-label="Menu" @click="toggleLeftDrawer" />
+        <q-btn
+          flat
+          dense
+          round
+          icon="menu"
+          aria-label="Menu"
+          @click="toggleLeftDrawer"
+        />
 
         <q-toolbar-title>
           {{ $t('app_title') }}
@@ -81,4 +98,3 @@ function toggleLeftDrawer() {
     </q-page-container>
   </q-layout>
 </template>
-

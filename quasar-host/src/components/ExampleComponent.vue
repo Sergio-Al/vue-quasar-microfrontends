@@ -6,9 +6,12 @@
         {{ todo.id }} - {{ todo.content }}
       </li>
     </ul>
-    <p>Count: {{ todoCount }} / {{ meta.totalCount }}</p>
-    <p>Active: {{ active ? 'yes' : 'no' }}</p>
-    <p>Clicks on todos: {{ clickCount }}</p>
+    <p>
+      {{ $t('example_component_count') }}: {{ todoCount }} /
+      {{ meta.totalCount }}
+    </p>
+    <p>{{ $t('example_component_active') }}: {{ active ? 'yes' : 'no' }}</p>
+    <p>{{ $t('example_component_click_todos') }}: {{ clickCount }}</p>
   </div>
 </template>
 
@@ -33,5 +36,4 @@ function increment() {
 }
 
 const todoCount = computed(() => props.todos.length);
-
 </script>

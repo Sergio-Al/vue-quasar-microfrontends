@@ -30,14 +30,13 @@ const { user } = storeToRefs(userStore);
 const changeUserName = () => {
   user.value = { ...user.value, name: 'Alejandro' }
 };
-
 </script>
 
 <template>
   <div>
     <q-card class="my-card">
       <q-card-section>
-        <div class="row q-gutter-x-sm text-h6 items-center">
+        <div class="row q-gutter-x-sm text-h6 items-center q-mb-sm">
           <q-avatar icon="person" size="md" text-color="white" color="primary">
             <q-tooltip>
               {{ $t('remote_my_name', { name: user.name }) }}
@@ -45,7 +44,6 @@ const changeUserName = () => {
           </q-avatar>
           <span>{{ user.name }}</span>
         </div>
-        <pre>{{ user }}</pre>
         <span class="q-py-sm text-blue-6 text-bold text-h3">
           {{ props.title }}
         </span>

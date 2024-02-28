@@ -34,7 +34,7 @@ module.exports = configure(function (ctx) {
     // app boot file (/src/boot)
     // --> boot files are part of "main.js"
     // https://v2.quasar.dev/quasar-cli-webpack/boot-files
-    boot: ['i18n', 'axios'],
+    boot: ['i18n', 'axios', 'globalComponents'],
 
     // https://v2.quasar.dev/quasar-cli-webpack/quasar-config-js#Property%3A-css
     css: ['app.scss'],
@@ -59,6 +59,7 @@ module.exports = configure(function (ctx) {
 
       extendWebpack(cfg) {
         cfg.entry = path.resolve(__dirname, './.quasar/main.js');
+
         cfg.plugins.push(
           new ModuleFederationPlugin({
             name: 'quasar_host',
@@ -122,7 +123,7 @@ module.exports = configure(function (ctx) {
         type: 'http',
       },
       port: 8080,
-      open: true, // opens browser window automatically
+      open: false, // opens browser window automatically
       // proxy: {
       //   '/quasar_remote': {
       //     target: 'http://localhost:8081',
